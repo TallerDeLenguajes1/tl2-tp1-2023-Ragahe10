@@ -7,25 +7,24 @@ public enum Estado {
 }
 
 public class Cadeteria {
-    private string? nombre;
+    private string nombre;
     private int telefono;
     private List<Cadete> cadetes;
     // PROPIEDADES
-    public string? Nombre { get => nombre; set => nombre = value; }
+    public string Nombre { get => nombre; set => nombre = value; }
     public int Telefono { get => telefono; set => telefono = value; }
     public List<Cadete> Cadetes { get => cadetes; set => cadetes = value; }
 
     // CONSTRUCTORES
-    public Cadeteria(string nombre, int telefono, List<Cadete> cadetes) {
+    public Cadeteria(string nombre, int telefono) {
         Nombre = nombre;
         Telefono = telefono;
-        Cadetes = cadetes;
+        Cadetes = new List<Cadete>();
     }
 
     // METODOS
     public void AsignarPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
-        var aleatorio = new Random();
-        Cadetes[aleatorio.Next(0,Cadetes.Count())].TomarPedido(nombre,direccion,telefono,datos,observacion);
+
     }
     public void CancelarPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
 
@@ -40,13 +39,24 @@ public class Cadete {
     private string direccion;
     private int telefono;
     private List<Pedido> pedidos;
+
+
     public int Id { get => id; set => id = value; }
     public string Nombre { get => nombre; set => nombre = value; }
     public string Direccion { get => direccion; set => direccion = value; }
     public int Telefono { get => telefono; set => telefono = value; }
+    public List<Pedido> Pedidos { get => pedidos; set => pedidos = value; }
 
+    public Cadete(int id, string nombre, string direccion, int telefono)
+    {
+        Id = id;
+        Nombre = nombre;
+        Direccion = direccion;
+        Telefono = telefono;
+        Pedidos = new List<Pedido>();
+    }
     public void TomarPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
-
+        var p = new Pedido()
     }
     public void CancelarPedido(Estado estado /*datosdel pedido*/) {
         // buscar pedido y modificar
@@ -70,14 +80,21 @@ public class Pedido {
     private Estado estado;
     private Cliente client;
 
+
     public int Numero { get => numero; set => numero = value; }
     public string Observacion { get => observacion; set => observacion = value; }
     public Estado Estado { get => estado; set => estado = value; }
     public Cliente Client { get => client; set => client = value; }
 
-    
-    public void CambiarEstadoPedido(Estado estado) {
+    public Pedido(int numero, string observacion, Cliente cliente){
+        Numero = numero;
+        Observacion = observacion;
+        Estado = Estado.SinEntregar;
+        Client = cliente;
+    }
 
+    public void CambiarEstadoPedido(Estado estado) {
+        Estado = estado;
     }
 }
 
