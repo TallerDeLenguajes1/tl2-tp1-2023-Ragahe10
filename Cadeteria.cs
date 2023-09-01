@@ -1,7 +1,7 @@
 namespace EspacioCadeteria;
 
 public enum Estado {
-    EnCamino,
+    SinEntregar,
     Cancelado,
     Entregado
 }
@@ -23,9 +23,9 @@ public class Cadeteria {
     }
 
     // METODOS
-    public void TomarPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
+    public void AsignarPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
         var aleatorio = new Random();
-        Cadetes[aleatorio.Next(0,Cadetes.Count())].AgregarPedido(nombre,direccion,telefono,datos,observacion);
+        Cadetes[aleatorio.Next(0,Cadetes.Count())].TomarPedido(nombre,direccion,telefono,datos,observacion);
     }
     public void CancelarPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
 
@@ -45,7 +45,7 @@ public class Cadete {
     public string Direccion { get => direccion; set => direccion = value; }
     public int Telefono { get => telefono; set => telefono = value; }
 
-    public void AgregarPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
+    public void TomarPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
 
     }
     public void CancelarPedido(Estado estado /*datosdel pedido*/) {
@@ -53,10 +53,6 @@ public class Cadete {
         // List<Pedido>[xx].CambiarEstadoPedido(estado)
     }
     public void EntregarPedido(Estado estado /*datosdel pedido*/) {
-        // buscar pedido y modificar
-        // List<Pedido>[xx].CambiarEstadoPedido(estado)
-    }
-    public void LlevandoPedido(Estado estado /*datosdel pedido*/) {
         // buscar pedido y modificar
         // List<Pedido>[xx].CambiarEstadoPedido(estado)
     }
@@ -79,6 +75,7 @@ public class Pedido {
     public Estado Estado { get => estado; set => estado = value; }
     public Cliente Client { get => client; set => client = value; }
 
+    
     public void CambiarEstadoPedido(Estado estado) {
 
     }
@@ -88,12 +85,17 @@ public class Cliente {
     private string nombre;
     private string direccion;
     private int telefono;
-    private string DatosRefDireccion;
+    private string datosRefDireccion;
 
     public string Nombre { get => nombre; set => nombre = value; }
     public string Direccion { get => direccion; set => direccion = value; }
     public int Telefono { get => telefono; set => telefono = value; }
-    public string DatosRefDireccion1 { get => DatosRefDireccion; set => DatosRefDireccion = value; }
+    public string DatosRefDireccion { get => datosRefDireccion; set => datosRefDireccion = value; }
     
-
+    public Cliente (string nombre, string direccion, int telefono, string datosRefDireccion) {
+        Nombre = nombre;
+        Direccion = direccion;
+        Telefono = telefono;
+        DatosRefDireccion = datosRefDireccion;
+    }
 }
