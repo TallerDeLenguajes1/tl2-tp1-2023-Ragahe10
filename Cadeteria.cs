@@ -1,5 +1,5 @@
 namespace EspacioCadeteria;
-
+using System.Linq;
 public enum Estado {
     SinEntregar,
     Cancelado,
@@ -26,11 +26,15 @@ public class Cadeteria {
     }
 
     // METODOS
-    public void TomarPedido(string nombre, string direccion, int telefono, string datos, string datosRef,  string observacion, int id) {
+    public Pedido TomarPedido(string nombre, string direccion, int telefono, string datos, string datosRef,  string observacion) {
         NumPed++;
         var cliente = new Cliente(nombre, direccion, telefono,datosRef);
         var pedido = new Pedido(NumPed,observacion,cliente);
-
+        return pedido;
+    }
+    public void AsignarPedido(int id, Pedido ped){
+        var cad = Cadetes.FirstOrDefault(c=>c.Id == id);
+        cad.Pedidos.Add(ped);
     }
     public void CancelarPedido(int numeroPed) {
         foreach (var cad in Cadetes)
@@ -43,18 +47,23 @@ public class Cadeteria {
             }
         }
     }
+    public void EntregarPedido(int numeroPed) {
+        foreach (var cad in Cadetes)
+        {
+            foreach (var p in cad.Pedidos)
+            {
+                if(p.Numero == numeroPed){
+                    p.CambiarEstadoPedido(Estado.Entregado);
+                }
+            }
+        }
+    }
     public void MoverPedido(int numeroPed, int id) {
         Pedido pedido = null;
         foreach (var cad in Cadetes)
         {
             if(cad.Id != id){
-                foreach (var p in cad.Pedidos)
-                {
-                    if(p.Numero == numeroPed){
-                        pedido = p;
-                        cad.Pedidos.Remove(p);
-                    }
-                }
+                pedido = cad.QuitarPedido(numeroPed);
             }
         }
         if(pedido != null){
@@ -65,6 +74,14 @@ public class Cadeteria {
                 }
             }
         }
+    }
+    public float PedPromedioCad(){
+        int pedidos = 0;
+        foreach (var c in Cadetes)
+        {
+            pedidos += c.CantidadPedidos(); 
+        }
+        return pedidos/Cadetes.Count();
     }
 }
 public class Cadete {
@@ -92,19 +109,38 @@ public class Cadete {
     public void TomarPedido(Pedido p) {
         Pedidos.Add(p);
     }
-    public void CancelarPedido(Estado estado /*datosdel pedido*/) {
-        // buscar pedido y modificar
-        // List<Pedido>[xx].CambiarEstadoPedido(estado)
+    public void CancelarPedido(int numPed) {
+        foreach (var p in Pedidos){
+            if(p.Numero == numPed){
+               p.CambiarEstadoPedido(Estado.Cancelado);
+            }
+        }
     }
-    public void EntregarPedido(Estado estado /*datosdel pedido*/) {
-        // buscar pedido y modificar
-        // List<Pedido>[xx].CambiarEstadoPedido(estado)
+    public void EntregarPedido(int numPed) {
+        foreach (var p in Pedidos){
+            if(p.Numero == numPed){
+               p.CambiarEstadoPedido(Estado.Cancelado);
+            }
+        }
     }
-    public void QuitarPedido() {
-
+    public Pedido QuitarPedido(int numPed) {
+        foreach (var p in Pedidos){
+            if(p.Numero == numPed){
+                var pedido =p;
+                Pedidos.Remove(p);
+                return p;
+            }
+        }
+        return null;
     }
-    public void JornalACobrar() {
-
+    public float JornalACobrar() {
+        return PedidosEntregados()*500;
+    }
+    private int PedidosEntregados(){
+        return Pedidos.Count(p => p.Estado == Estado.Entregado);//uso del LINQ
+    }
+    public int CantidadPedidos(){
+        return Pedidos.Count();
     }
 }
 
