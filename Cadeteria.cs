@@ -22,14 +22,14 @@ public class Cadeteria {
         Nombre = nombre;
         Telefono = telefono;
         Cadetes = new List<Cadete>();
-        NumPed = 0;
+        NumPed = 1;
     }
 
     // METODOS
-    public Pedido TomarPedido(string nombre, string direccion, int telefono, string datos, string datosRef,  string observacion) {
-        NumPed++;
+    public Pedido TomarPedido(string nombre, string direccion, int telefono, string datosRef,  string observacion) {
         var cliente = new Cliente(nombre, direccion, telefono,datosRef);
         var pedido = new Pedido(NumPed,observacion,cliente);
+        NumPed++;
         return pedido;
     }
     public void AsignarPedido(int id, Pedido ped){

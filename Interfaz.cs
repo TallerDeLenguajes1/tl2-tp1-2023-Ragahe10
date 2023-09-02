@@ -67,6 +67,7 @@ static class Interfaz{
         ConsoleKeyInfo key;
         int op = 1, salir=0;
         var Cadeteria = new Cadeteria("YaPedidos",4265192);
+        Pedido pedido = null;
         do{
             Console.WriteLine(Centrar("++   "+Cadeteria.Nombre+"   ++",30));
             Console.WriteLine(Centrar("+Tel:"+Cadeteria.Telefono+"+", 30));
@@ -77,16 +78,21 @@ static class Interfaz{
                 Console.WriteLine(Centrar("Dar de alta",30));
             }
             if(op==2){
+                Console.WriteLine(Centrar(">>Dar de alta<<",30));
+            }else{
+                Console.WriteLine(Centrar("Dar de alta",30));
+            }
+            if(op==3){
                 Console.WriteLine(Centrar(">>Cambiar estado<<",30));
             }else{
                 Console.WriteLine(Centrar("Cambiar estado",30));
             }
-            if(op==3){
+            if(op==4){
                 Console.WriteLine(Centrar(">>Reasignar<<",30));
             }else{
                 Console.WriteLine(Centrar("Reasignar",30));
             }
-            if(op==4){
+            if(op==5){
                 Console.WriteLine(Centrar(">>Salir<<",30));
             }else{
                 Console.WriteLine(Centrar("Salir",30));
@@ -101,7 +107,7 @@ static class Interfaz{
                     }
                     break;
                 case ConsoleKey.DownArrow:
-                    if(op<4){
+                    if(op<5){
                         op++;
                     }
                     break;
@@ -109,15 +115,18 @@ static class Interfaz{
                     switch (op)
                     {   
                         case 1:
-                            Alta();
+                            Alta(pedido);
                             break;
                         case 2:
-                            CambiarEstado();
+                            Asignar(pedido);
                             break;
                         case 3:
-                            Reasignar();
+                            CambiarEstado();
                             break;
                         case 4:
+                            Reasignar();
+                            break;
+                        case 5:
                             salir = 1;
                             break;
                     }
@@ -126,7 +135,48 @@ static class Interfaz{
         } while (key.Key != ConsoleKey.Escape && salir==0);
     }
 
-    private static void Alta()
+
+    private static void Alta(Pedido p)
+    {
+        var Cadeteria = new Cadeteria("YaPedidos",4265192);
+
+        Console.WriteLine(Centrar(">>>ALTA PEDIDO<<<",30));
+        EscribirMensaje("- Ingrese los siguientes datos:");
+        Console.ReadKey();
+
+        string nombre, direccion, datosRef, observacion;
+        int telefono;
+        EscribirMensaje("- Nombre de la persona que hace el pedido:");
+        nombre = Console.ReadLine();
+        EscribirMensaje("- Dirección:");
+        direccion = Console.ReadLine();
+        EscribirMensaje("- Referencias sobre la dirección:");
+        datosRef = Console.ReadLine();
+        EscribirMensaje("- Teléfono:");
+        int.TryParse(Console.ReadLine(),out telefono);
+        EscribirMensaje("- Observación del pedido:");
+        observacion = Console.ReadLine();
+        
+        Console.Clear();
+        Console.WriteLine(Centrar(">>>ALTA PEDIDO<<<",30));
+        Console.WriteLine("<> PEDIDO Nº "+Cadeteria.NumPed);
+        Console.WriteLine("  ->Observación: "+observacion);
+        Console.WriteLine("  ->Datos del Cliente:");
+        Console.WriteLine("     ->Nombre: "+nombre);
+        Console.WriteLine("     ->Direccion: "+direccion);
+        Console.WriteLine("     ->Referencias: "+datosRef);
+        Console.WriteLine("     ->Teléfono: "+telefono);
+
+        EscribirMensaje("- Confirma el pedido???(presione enter, s o y, para confirmar)");
+        ConsoleKeyInfo op = Console.ReadKey();
+        if(op.Key== ConsoleKey.S || op.Key== ConsoleKey.Y || op.Key== ConsoleKey.Enter){
+            p = Cadeteria.TomarPedido(nombre,direccion, telefono, datosRef,observacion);
+            EscribirMensaje("- Pedido creado...");
+        }else{
+            EscribirMensaje("- Pedido cancelado...");
+        }
+    }
+    private static void Asignar(Pedido pedido)
     {
         throw new NotImplementedException();
     }
