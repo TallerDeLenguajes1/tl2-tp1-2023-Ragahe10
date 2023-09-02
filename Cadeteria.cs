@@ -10,27 +10,61 @@ public class Cadeteria {
     private string nombre;
     private int telefono;
     private List<Cadete> cadetes;
+    private int numPed;
     // PROPIEDADES
     public string Nombre { get => nombre; set => nombre = value; }
     public int Telefono { get => telefono; set => telefono = value; }
     public List<Cadete> Cadetes { get => cadetes; set => cadetes = value; }
+    public int NumPed { get => numPed; set => numPed = value; }
 
     // CONSTRUCTORES
     public Cadeteria(string nombre, int telefono) {
         Nombre = nombre;
         Telefono = telefono;
         Cadetes = new List<Cadete>();
+        NumPed = 0;
     }
 
     // METODOS
-    public void AsignarPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
+    public void TomarPedido(string nombre, string direccion, int telefono, string datos, string datosRef,  string observacion, int id) {
+        NumPed++;
+        var cliente = new Cliente(nombre, direccion, telefono,datosRef);
+        var pedido = new Pedido(NumPed,observacion,cliente);
 
     }
-    public void CancelarPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
-
+    public void CancelarPedido(int numeroPed) {
+        foreach (var cad in Cadetes)
+        {
+            foreach (var p in cad.Pedidos)
+            {
+                if(p.Numero == numeroPed){
+                    p.CambiarEstadoPedido(Estado.Cancelado);
+                }
+            }
+        }
     }
-    public void MoverPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
-
+    public void MoverPedido(int numeroPed, int id) {
+        Pedido pedido = null;
+        foreach (var cad in Cadetes)
+        {
+            if(cad.Id != id){
+                foreach (var p in cad.Pedidos)
+                {
+                    if(p.Numero == numeroPed){
+                        pedido = p;
+                        cad.Pedidos.Remove(p);
+                    }
+                }
+            }
+        }
+        if(pedido != null){
+            foreach (var cad in Cadetes)
+            {
+                if(cad.Id == id){
+                    cad.Pedidos.Add(pedido);
+                }
+            }
+        }
     }
 }
 public class Cadete {
@@ -55,8 +89,8 @@ public class Cadete {
         Telefono = telefono;
         Pedidos = new List<Pedido>();
     }
-    public void TomarPedido(string nombre, string direccion, int telefono, string datos, string observacion) {
-        var p = new Pedido()
+    public void TomarPedido(Pedido p) {
+        Pedidos.Add(p);
     }
     public void CancelarPedido(Estado estado /*datosdel pedido*/) {
         // buscar pedido y modificar
