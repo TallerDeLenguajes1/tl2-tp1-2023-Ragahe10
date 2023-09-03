@@ -113,10 +113,20 @@ static class InterfazVisual{
                             pedido = null;
                             break;
                         case 2:
-                            CambiarEstado(Cdria);
+                            if(Cdria.NumPed>1){
+                                CambiarEstado(Cdria);
+                            }else{
+                                EscribirMensaje("- Aún no hay pedidos...");
+                                Console.Clear();
+                            }
                             break;
                         case 3:
-                            Reasignar(Cdria);
+                            if(Cdria.NumPed>1){
+                                Reasignar(Cdria);
+                            }else{
+                                EscribirMensaje("- Aún no hay pedidos...");
+                                Console.Clear();
+                            }
                             break;
                         case 4:
                             salir = 1;
