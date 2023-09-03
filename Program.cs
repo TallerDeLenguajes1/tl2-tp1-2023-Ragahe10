@@ -2,8 +2,11 @@
 using EspacioArchivos;
 using Interfaz;
 
-var Cadet = Archivos.LeerCadeteria("Cadeteria");
+
+Cadeteria Cadet = Archivos.LeerCadeteria("Cadeteria");
 Archivos.LeerCadetes("Cadetes", Cadet.Cadetes);
 
-
 InterfazVisual.menu(Cadet);
+
+Archivos.GuardarResumen(Cadet);
+Archivos.EscribirResumen();

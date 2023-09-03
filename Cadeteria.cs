@@ -57,9 +57,16 @@ public class Cadeteria {
         int pedidos = 0;
         foreach (var c in Cadetes)
         {
-            pedidos += c.CantidadPedidos(); 
+            pedidos += c.CantidadPedidos(0); 
         }
         return pedidos/Cadetes.Count();
+    }
+    public float TotalaPagar(){
+        float monto=0;
+        foreach (var cad in Cadetes){
+            monto = monto + cad.JornalACobrar();
+        }
+        return monto;
     }
 }
 public class Cadete {
@@ -90,7 +97,6 @@ public class Cadete {
     public Pedido QuitarPedido(int numPed) {
         foreach (var p in Pedidos){
             if(p.Numero == numPed){
-                var pedido =p;
                 Pedidos.Remove(p);
                 return p;
             }
@@ -103,8 +109,20 @@ public class Cadete {
     private int PedidosEntregados(){
         return Pedidos.Count(p => p.Estado == Estado.Entregado);//uso del LINQ
     }
-    public int CantidadPedidos(){
-        return Pedidos.Count();
+    public int CantidadPedidos(int op){
+        int cant=0;
+        switch (op){
+            case 1:
+                cant = Pedidos.Count(p=> p.Estado == Estado.Entregado);
+                break;
+            case 2:
+                cant = Pedidos.Count(p=> p.Estado == Estado.SinEntregar);
+                break;
+            case 3:
+                cant = Pedidos.Count(p=> p.Estado == Estado.Cancelado);
+                break;
+        }
+        return cant;
     }
 }
 

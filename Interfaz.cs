@@ -209,7 +209,7 @@ static class InterfazVisual{
         EscribirMensaje("- Elija el ID del cadete a asignar:");
         int.TryParse(Console.ReadLine(), out id);
         Console.Clear();
-        if (id < Cdria.Cadetes.Count() && id > 0)
+        if (id <= Cdria.Cadetes.Count() && id > 0)
         {
             Cdria.AsignarPedido(id, p);
             EscribirMensaje("- Pedido asignado...");
@@ -340,6 +340,8 @@ static class InterfazVisual{
         Console.Clear();
         if(numPed>0 && numPed<Cdria.NumPed){
             var ped = BuscarPedidoPorNum(Cdria,numPed);
+            var cadete = Cdria.Cadetes.FirstOrDefault(c=>c.Pedidos.Any(p=>p.Numero == numPed));
+            cadete.QuitarPedido(numPed);
             if(ped.Estado != Estado.Cancelado && ped.Estado != Estado.Entregado){
                 Asignar(ped,Cdria);
             }else{
