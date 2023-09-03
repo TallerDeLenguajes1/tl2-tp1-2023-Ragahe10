@@ -36,28 +36,6 @@ public class Cadeteria {
         var cad = Cadetes.FirstOrDefault(c=>c.Id == id);
         cad.Pedidos.Add(ped);
     }
-    public void CancelarPedido(int numeroPed) {
-        foreach (var cad in Cadetes)
-        {
-            foreach (var p in cad.Pedidos)
-            {
-                if(p.Numero == numeroPed){
-                    p.CambiarEstadoPedido(Estado.Cancelado);
-                }
-            }
-        }
-    }
-    public void EntregarPedido(int numeroPed) {
-        foreach (var cad in Cadetes)
-        {
-            foreach (var p in cad.Pedidos)
-            {
-                if(p.Numero == numeroPed){
-                    p.CambiarEstadoPedido(Estado.Entregado);
-                }
-            }
-        }
-    }
     public void MoverPedido(int numeroPed, int id) {
         Pedido pedido = null;
         foreach (var cad in Cadetes)
@@ -109,20 +87,6 @@ public class Cadete {
     public void TomarPedido(Pedido p) {
         Pedidos.Add(p);
     }
-    public void CancelarPedido(int numPed) {
-        foreach (var p in Pedidos){
-            if(p.Numero == numPed){
-               p.CambiarEstadoPedido(Estado.Cancelado);
-            }
-        }
-    }
-    public void EntregarPedido(int numPed) {
-        foreach (var p in Pedidos){
-            if(p.Numero == numPed){
-               p.CambiarEstadoPedido(Estado.Cancelado);
-            }
-        }
-    }
     public Pedido QuitarPedido(int numPed) {
         foreach (var p in Pedidos){
             if(p.Numero == numPed){
@@ -163,8 +127,11 @@ public class Pedido {
         Client = cliente;
     }
 
-    public void CambiarEstadoPedido(Estado estado) {
-        Estado = estado;
+    public void EntregarPedido() {
+        Estado = Estado.Entregado;
+    }
+    public void CancelarPedido() {
+        Estado = Estado.Cancelado;
     }
 }
 
