@@ -209,10 +209,6 @@ static class InterfazVisual{
         if(numPed >0 && numPed <= Cdria.NumPed)
         {
             Pedido pedido = BuscarPedidoPorNum(Cdria, numPed);
-            Console.WriteLine(Centrar(">>>CAMBIAR ESTADO<<<", 30));
-            Console.WriteLine(Centrar("PEDIDO " + pedido.Numero, 30));
-            Console.WriteLine(" ->Estado: " + pedido.Estado.ToString());
-            Console.WriteLine(" ->Cliente: " + pedido.Client.Nombre);
 
             var key = new ConsoleKeyInfo();
             int op = 3, salir = 0;
@@ -278,9 +274,15 @@ static class InterfazVisual{
                         {
                             case 1:
                                 pedido.CancelarPedido();
+                                EscribirMensaje("- Pedido Cancelado"); 
+                                Console.ReadKey();
+                                Console.Clear();
                                 break;
                             case 2:
                                 pedido.EntregarPedido();
+                                EscribirMensaje("- Pedido Entregado"); 
+                                Console.ReadKey();
+                                Console.Clear();
                                 break;
                             case 3:
                                 salir = 1;
