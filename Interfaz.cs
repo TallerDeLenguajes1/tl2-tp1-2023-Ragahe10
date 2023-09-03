@@ -165,8 +165,8 @@ static class InterfazVisual{
         int.TryParse(Console.ReadLine(),out telefono);
         EscribirMensaje("- Observación del pedido:");
         observacion = Console.ReadLine();
-        if(datosRef ==""){
-            datosRef= "Ninguna";
+        if(observacion ==""){
+            observacion= "Ninguna";
         }
         Console.Clear();
 
@@ -300,12 +300,14 @@ static class InterfazVisual{
                             case 1:
                                 pedido.CancelarPedido();
                                 EscribirMensaje("- Pedido Cancelado"); 
+                                salir = 1;
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;
                             case 2:
                                 pedido.EntregarPedido();
                                 EscribirMensaje("- Pedido Entregado"); 
+                                salir = 1;
                                 Console.ReadKey();
                                 Console.Clear();
                                 break;
@@ -346,6 +348,8 @@ static class InterfazVisual{
                 }else{
                     EscribirMensaje("- No se puede reasignar porque ya fué entregado");
                 }
+                Console.ReadKey();
+                Console.Clear();
             }
         }
     }
