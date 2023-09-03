@@ -117,6 +117,7 @@ static class InterfazVisual{
                                 CambiarEstado(Cdria);
                             }else{
                                 EscribirMensaje("- Aún no hay pedidos...");
+                                Console.ReadKey();
                                 Console.Clear();
                             }
                             break;
@@ -125,6 +126,7 @@ static class InterfazVisual{
                                 Reasignar(Cdria);
                             }else{
                                 EscribirMensaje("- Aún no hay pedidos...");
+                                Console.ReadKey();
                                 Console.Clear();
                             }
                             break;
@@ -147,14 +149,25 @@ static class InterfazVisual{
         int telefono;
         EscribirMensaje("- Nombre de la persona que hace el pedido:");
         nombre = Console.ReadLine();
-        EscribirMensaje("- Dirección:");
-        direccion = Console.ReadLine();
+        if(nombre == ""){
+            nombre = "Sin Nombre";
+        }
+        do{    
+            EscribirMensaje("- Dirección:");
+            direccion = Console.ReadLine();
+        } while (direccion.Count()<4);
         EscribirMensaje("- Referencias sobre la dirección:");
         datosRef = Console.ReadLine();
+        if(datosRef.Count()<5){
+            datosRef= "Sin referencias";
+        }
         EscribirMensaje("- Teléfono:");
         int.TryParse(Console.ReadLine(),out telefono);
         EscribirMensaje("- Observación del pedido:");
         observacion = Console.ReadLine();
+        if(datosRef ==""){
+            datosRef= "Ninguna";
+        }
         Console.Clear();
 
         Console.WriteLine(Centrar(">>>ALTA PEDIDO<<<",30));
@@ -179,6 +192,8 @@ static class InterfazVisual{
         else
         {
             EscribirMensaje("- Pedido cancelado...");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 
