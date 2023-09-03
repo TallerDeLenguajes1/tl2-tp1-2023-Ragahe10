@@ -18,12 +18,12 @@ static class InterfazVisual{
         palabraCentrada = palabraCentrada.PadRight(espacios);
         return palabraCentrada;
     }
-    public static void menu(Cadeteria Cadeteria){
+    public static void menu(Cadeteria Cdria){
         ConsoleKeyInfo key;
         int op = 1, salir=0;
         do{
-            Console.WriteLine(Centrar("++   "+Cadeteria.Nombre+"   ++",30));
-            Console.WriteLine(Centrar("+Tel:"+Cadeteria.Telefono+"+", 30));
+            Console.WriteLine(Centrar("++   "+Cdria.Nombre+"   ++",30));
+            Console.WriteLine(Centrar("+Tel:"+Cdria.Telefono+"+", 30));
             if(op==1){
                 Console.WriteLine(Centrar(">>Pedidos<<",30));
             }else{
@@ -52,7 +52,7 @@ static class InterfazVisual{
                     switch (op)
                     {   
                         case 1:
-                            Pedidos(Cadeteria);
+                            Pedidos(Cdria);
                             break;
                         case 2:
                             salir = 1;
@@ -62,13 +62,13 @@ static class InterfazVisual{
             }
         } while (key.Key != ConsoleKey.Escape && salir==0);
     }
-    private static void Pedidos(Cadeteria Cadeteria){
+    private static void Pedidos(Cadeteria Cdria){
         ConsoleKeyInfo key;
         int op = 1, salir=0;
         Pedido pedido = null;
         do{
-            Console.WriteLine(Centrar("++   "+Cadeteria.Nombre+"   ++",30));
-            Console.WriteLine(Centrar("+Tel:"+Cadeteria.Telefono+"+", 30));
+            Console.WriteLine(Centrar("++   "+Cdria.Nombre+"   ++",30));
+            Console.WriteLine(Centrar("+Tel:"+Cdria.Telefono+"+", 30));
             Console.WriteLine(Centrar(">>>> PEDIDOS <<<<", 30));
             if(op==1){
                 Console.WriteLine(Centrar(">>Dar de alta<<",30));
@@ -109,14 +109,14 @@ static class InterfazVisual{
                     switch (op)
                     {   
                         case 1:
-                            Alta(pedido);
+                            Alta(pedido, Cdria);
                             pedido = null;
                             break;
                         case 2:
-                            CambiarEstado(Cadeteria);
+                            CambiarEstado(Cdria);
                             break;
                         case 3:
-                            Reasignar(Cadeteria);
+                            Reasignar(Cdria);
                             break;
                         case 4:
                             salir = 1;
@@ -127,10 +127,8 @@ static class InterfazVisual{
         } while (key.Key != ConsoleKey.Escape && salir==0);
     }
 
-    private static void Alta(Pedido p)
+    private static void Alta(Pedido p, Cadeteria Cdria)
     {
-        var Cadeteria = new Cadeteria("YaPedidos",4265192);
-
         Console.WriteLine(Centrar(">>>ALTA PEDIDO<<<",30));
         EscribirMensaje("- Ingrese los siguientes datos:");
         Console.ReadKey();
@@ -150,7 +148,7 @@ static class InterfazVisual{
         Console.Clear();
 
         Console.WriteLine(Centrar(">>>ALTA PEDIDO<<<",30));
-        Console.WriteLine("<> PEDIDO Nº "+Cadeteria.NumPed);
+        Console.WriteLine("<> PEDIDO Nº "+Cdria.NumPed);
         Console.WriteLine("  ->Observación: "+observacion);
         Console.WriteLine("  ->Datos del Cliente:");
         Console.WriteLine("     ->Nombre: "+nombre);
@@ -162,11 +160,11 @@ static class InterfazVisual{
         ConsoleKeyInfo op = Console.ReadKey();
         if(op.Key== ConsoleKey.S || op.Key== ConsoleKey.Y || op.Key== ConsoleKey.Enter)
         {
-            p = Cadeteria.TomarPedido(nombre, direccion, telefono, datosRef, observacion);
+            p = Cdria.TomarPedido(nombre, direccion, telefono, datosRef, observacion);
             EscribirMensaje("- Pedido creado...");
             Console.ReadKey();
             Console.Clear();
-            Asignar(p, Cadeteria);
+            Asignar(p, Cdria);
         }
         else
         {
@@ -174,29 +172,30 @@ static class InterfazVisual{
         }
     }
 
-    private static void Asignar(Pedido p, Cadeteria Cadeteria)
+    private static void Asignar(Pedido p, Cadeteria Cdria)
     {
         int id;
         Console.WriteLine(Centrar(">>>ASIGNAR PEDIDO<<<", 30));
         Console.WriteLine("-> LISTADO DE CADETES:");
-        foreach (var c in Cadeteria.Cadetes)
+        foreach (var c in Cdria.Cadetes)
         {
             Console.WriteLine(" ->ID:" + c.Id + ", " + c.Nombre + " Cantidad de pedidos: " + c.Pedidos.Count());
         }
         EscribirMensaje("- Elija el ID del cadete a asignar:");
         int.TryParse(Console.ReadLine(), out id);
         Console.Clear();
-        if (id < Cadeteria.Cadetes.Count() && id > 0)
+        if (id < Cdria.Cadetes.Count() && id > 0)
         {
-            Cadeteria.AsignarPedido(id, p);
+            Cdria.AsignarPedido(id, p);
             EscribirMensaje("- Pedido asignado...");
         }
         else
         {
             EscribirMensaje("- ID no valido, se asignará automáticamente...");
             var r = new Random();
-            id = r.Next(1, Cadeteria.Cadetes.Count());
-            Cadeteria.AsignarPedido(id, p);
+            var max =Cdria.Cadetes.Count();
+            id = r.Next(1,max);
+            Cdria.AsignarPedido(id, p);
         }
     }
 
