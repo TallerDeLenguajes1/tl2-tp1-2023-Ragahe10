@@ -1,7 +1,7 @@
 Ya PedidosRESUMEN
 Fecha: domingo 3 de septiembre de 2023
 PE: pedidos entregados, PSE: pedidos sin entregar, PC: pedidos cancelados, PT: pedidos totales.
-1| Ramiro Herrea, PE2 PSE:0 PC:0 PT:0, JORNAL: 1000
+1| Ramiro Herrea, PE0 PSE:0 PC:0 PT:0, JORNAL: 0
 2| José Boggio, PE0 PSE:1 PC:0 PT:0, JORNAL: 0
-3| Miguel Veliz, PE0 PSE:0 PC:1 PT:0, JORNAL: 0
-Total de pedidos: 4  Total a pagar: 1000
+3| Miguel Veliz, PE0 PSE:0 PC:0 PT:0, JORNAL: 0
+Total de pedidos: 1  Total a pagar: 0
