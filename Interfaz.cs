@@ -3,7 +3,7 @@ namespace Interfaz;
 using System;
 using System.Linq;
 using EspacioCadeteria;
-static class Interfaz{
+static class InterfazVisual{
     private static void EscribirMensaje(string message){
         for (int i = 0; i < message.Length; i++)
         {
@@ -18,10 +18,9 @@ static class Interfaz{
         palabraCentrada = palabraCentrada.PadRight(espacios);
         return palabraCentrada;
     }
-    public static void menu(){
+    public static void menu(Cadeteria Cadeteria){
         ConsoleKeyInfo key;
         int op = 1, salir=0;
-        var Cadeteria = new Cadeteria("YaPedidos",4265192);
         do{
             Console.WriteLine(Centrar("++   "+Cadeteria.Nombre+"   ++",30));
             Console.WriteLine(Centrar("+Tel:"+Cadeteria.Telefono+"+", 30));
@@ -53,7 +52,7 @@ static class Interfaz{
                     switch (op)
                     {   
                         case 1:
-                            Pedidos();
+                            Pedidos(Cadeteria);
                             break;
                         case 2:
                             salir = 1;
@@ -63,10 +62,9 @@ static class Interfaz{
             }
         } while (key.Key != ConsoleKey.Escape && salir==0);
     }
-    private static void Pedidos(){
+    private static void Pedidos(Cadeteria Cadeteria){
         ConsoleKeyInfo key;
         int op = 1, salir=0;
-        var Cadeteria = new Cadeteria("YaPedidos",4265192);
         Pedido pedido = null;
         do{
             Console.WriteLine(Centrar("++   "+Cadeteria.Nombre+"   ++",30));
@@ -138,7 +136,7 @@ static class Interfaz{
         Console.ReadKey();
 
         string nombre, direccion, datosRef, observacion;
-        int telefono, id = -88;
+        int telefono;
         EscribirMensaje("- Nombre de la persona que hace el pedido:");
         nombre = Console.ReadLine();
         EscribirMensaje("- Dirección:");
