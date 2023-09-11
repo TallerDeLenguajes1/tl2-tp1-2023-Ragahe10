@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Taller-repo\\Taller2\\tl2-tp1-2023-Ragahe10\\tl2-tp1-2023-Ragahe10.csproj": {}
+    "C:\\Users\\educacion\\Desktop\\ramiro\\PU\\2doAño\\TallerDeLenguajes\\Taller-repo\\Taller2\\tl2-tp1-2023-Ragahe10\\tl2-tp1-2023-Ragahe10.csproj": {}
   },
   "projects": {
-    "C:\\Taller-repo\\Taller2\\tl2-tp1-2023-Ragahe10\\tl2-tp1-2023-Ragahe10.csproj": {
+    "C:\\Users\\educacion\\Desktop\\ramiro\\PU\\2doAño\\TallerDeLenguajes\\Taller-repo\\Taller2\\tl2-tp1-2023-Ragahe10\\tl2-tp1-2023-Ragahe10.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Taller-repo\\Taller2\\tl2-tp1-2023-Ragahe10\\tl2-tp1-2023-Ragahe10.csproj",
+        "projectUniqueName": "C:\\Users\\educacion\\Desktop\\ramiro\\PU\\2doAño\\TallerDeLenguajes\\Taller-repo\\Taller2\\tl2-tp1-2023-Ragahe10\\tl2-tp1-2023-Ragahe10.csproj",
         "projectName": "tl2-tp1-2023-Ragahe10",
-        "projectPath": "C:\\Taller-repo\\Taller2\\tl2-tp1-2023-Ragahe10\\tl2-tp1-2023-Ragahe10.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Taller-repo\\Taller2\\tl2-tp1-2023-Ragahe10\\obj\\",
+        "projectPath": "C:\\Users\\educacion\\Desktop\\ramiro\\PU\\2doAño\\TallerDeLenguajes\\Taller-repo\\Taller2\\tl2-tp1-2023-Ragahe10\\tl2-tp1-2023-Ragahe10.csproj",
+        "packagesPath": "C:\\Users\\educacion\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\educacion\\Desktop\\ramiro\\PU\\2doAño\\TallerDeLenguajes\\Taller-repo\\Taller2\\tl2-tp1-2023-Ragahe10\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\educacion\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -53,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

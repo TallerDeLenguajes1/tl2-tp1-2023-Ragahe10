@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tl2-tp1-2023-Ragahe10", "tl2-tp1-2023-Ragahe10.csproj", "{140A4190-0234-4BC6-8239-323D09F598FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{140A4190-0234-4BC6-8239-323D09F598FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{140A4190-0234-4BC6-8239-323D09F598FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{140A4190-0234-4BC6-8239-323D09F598FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{140A4190-0234-4BC6-8239-323D09F598FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C05FF81C-246C-4D64-AEEE-C20FCE341342}
+	EndGlobalSection
+EndGlobal
