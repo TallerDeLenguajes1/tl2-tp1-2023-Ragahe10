@@ -1,5 +1,2 @@
-﻿using EspacioCadeteria;
-using EspacioArchivos;
-using Interfaz;
-
+﻿using Interfaz;
 InterfazVisual.IniciarSistema();

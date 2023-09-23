@@ -32,6 +32,7 @@ public class Cadeteria {
     public Pedido TomarPedido(string nombre, string direccion, int telefono, string datosRef,  string observacion) {
         var cliente = new Cliente(nombre, direccion, telefono,datosRef);
         var pedido = new Pedido(NumPed,observacion,cliente);
+        Pedidos.Add(pedido);
         NumPed++;
         return pedido;
     }
